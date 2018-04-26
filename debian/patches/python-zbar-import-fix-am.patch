@@ -1,6 +1,16 @@
+From: Bernd Zeimetz <bzed@debian.org>
+Date: Tue, 24 Apr 2018 17:43:50 +0300
+Subject: python-zbar-import-fix-am
+
+---
+ python/imagescanner.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/python/imagescanner.c b/python/imagescanner.c
+index e7f7f09..1eba4cb 100644
 --- a/python/imagescanner.c
 +++ b/python/imagescanner.c
-@@ -67,7 +67,8 @@ imagescanner_get_results (zbarImageScann
+@@ -67,7 +67,8 @@ imagescanner_get_results (zbarImageScanner *self,
  }
  
  static PyGetSetDef imagescanner_getset[] = {

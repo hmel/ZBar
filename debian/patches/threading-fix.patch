@@ -1,6 +1,16 @@
---- a/python/processor.c	2009-10-23 19:16:44.000000000 +0100
-+++ b/python/processor.c	2014-07-29 18:22:52.706154561 +0100
-@@ -36,15 +36,24 @@
+From: Bernd Zeimetz <bzed@debian.org>
+Date: Tue, 24 Apr 2018 17:43:50 +0300
+Subject: threading-fix
+
+---
+ python/processor.c | 49 +++++++++++++++++++++++++++++++++++++++++--------
+ 1 file changed, 41 insertions(+), 8 deletions(-)
+
+diff --git a/python/processor.c b/python/processor.c
+index c42d918..5c3c462 100644
+--- a/python/processor.c
++++ b/python/processor.c
+@@ -36,15 +36,24 @@ processor_new (PyTypeObject *type,
                 PyObject *args,
                 PyObject *kwds)
  {
@@ -28,7 +38,7 @@
      zbar_processor_set_userdata(self->zproc, self);
      if(!self->zproc) {
          Py_DECREF(self);
-@@ -228,7 +237,11 @@
+@@ -228,7 +237,11 @@ processor_user_wait (zbarProcessor *self,
                                      object_to_timeout, &timeout))
          return(NULL);
  
@@ -41,7 +51,7 @@
      if(rc < 0)
          return(zbarErr_Set((PyObject*)self));
      return(PyInt_FromLong(rc));
-@@ -245,7 +258,11 @@
+@@ -245,7 +258,11 @@ processor_process_one (zbarProcessor *self,
                                      object_to_timeout, &timeout))
          return(NULL);
  
@@ -54,7 +64,7 @@
      if(rc < 0)
          return(zbarErr_Set((PyObject*)self));
      return(PyInt_FromLong(rc));
-@@ -265,7 +282,11 @@
+@@ -265,7 +282,11 @@ processor_process_image (zbarProcessor *self,
      if(zbarImage_validate(img))
          return(NULL);
  
@@ -67,7 +77,7 @@
      if(n < 0)
          return(zbarErr_Set((PyObject*)self));
      return(PyInt_FromLong(n));
-@@ -275,6 +296,9 @@
+@@ -275,6 +296,9 @@ void
  process_handler (zbar_image_t *zimg,
                   const void *userdata)
  {
@@ -77,7 +87,7 @@
      zbarProcessor *self = (zbarProcessor*)userdata;
      assert(self);
      assert(self->handler);
-@@ -285,7 +309,7 @@
+@@ -285,7 +309,7 @@ process_handler (zbar_image_t *zimg,
          img = zbarImage_FromImage(zimg);
          if(!img) {
              PyErr_NoMemory();
@@ -86,7 +96,7 @@
          }
      }
      else
-@@ -299,8 +323,17 @@
+@@ -299,8 +323,17 @@ process_handler (zbar_image_t *zimg,
      PyTuple_SET_ITEM(args, 2, self->closure);
  
      PyObject *junk = PyObject_Call(self->handler, args, NULL);

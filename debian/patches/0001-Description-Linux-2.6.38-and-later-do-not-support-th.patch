@@ -9,12 +9,12 @@ Bug-Ubuntu: http://bugs.launchpad.net/bugs/724997
 Bug-Debian: http://bugs.debian.org/620220
 Bug: http://sourceforge.net/tracker/?func=detail&aid=3128542&group_id=189236&atid=928517
 ---
- configure.ac            |   11 +-
- include/config.h.in     |   13 +-
- zbar/Makefile.am.inc    |   18 +--
- zbar/video/v4l1.c       |  435 -----------------------------------------------
- zbar/video/v4l2.c       |   70 +++++---
- zbarcam/Makefile.am.inc |    2 +
+ configure.ac            |  11 +-
+ include/config.h.in     |  13 +-
+ zbar/Makefile.am.inc    |  18 +-
+ zbar/video/v4l1.c       | 435 ------------------------------------------------
+ zbar/video/v4l2.c       |  70 +++++---
+ zbarcam/Makefile.am.inc |   2 +
  6 files changed, 64 insertions(+), 485 deletions(-)
  delete mode 100644 zbar/video/v4l1.c
 
@@ -816,4 +816,3 @@ index ea869bc..78ce9b7 100644
 +else
 +zbarcam_zbarcam_LDADD += -lv4l2
  endif
--- 

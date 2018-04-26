@@ -2,3 +2,7 @@
 python-zbar-import-fix-am.patch
 new_autotools_build_fix.patch
 threading-fix.patch
+0005-Add-fPIC-to-compilation-flags.patch
+0006-Use-Qt5.patch
+0007-Update-libzbarqt-to-Qt5.patch
+0008-Update-autotools.patch

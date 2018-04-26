@@ -1,0 +1,19 @@
+From: Nikolay Mitev <face@hmel.org>
+Date: Thu, 26 Apr 2018 11:17:30 +0300
+Subject: Add -fPIC to compilation flags
+
+---
+ Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index 9608be6..9b7e0b8 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -1,5 +1,5 @@
+ AM_CPPFLAGS = -I$(srcdir)/include
+-AM_CFLAGS = -Wall -Wno-parentheses
++AM_CFLAGS = -Wall -Wno-parentheses -fPIC
+ AM_CXXFLAGS = $(AM_CFLAGS)
+ ACLOCAL_AMFLAGS = -I config
+ bin_PROGRAMS =
